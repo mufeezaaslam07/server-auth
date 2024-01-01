@@ -20,16 +20,22 @@ app.use(
   })
 );
 
+app.use(cors());
+
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(
-  cors({
-    origin: ["http://localhost:3000", "http://localhost:8080"],
-    methods: "GET,POST,PUT,DELETE",
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: ["http://localhost:3000", "http://localhost:8080"],
+//     methods: "GET,POST,PUT,DELETE",
+//     credentials: true,
+//   })
+// );
+
+app.get("/", (req, res) => {
+  res.send("Hello Meow");
+});
 
 app.use("/auth", authRoute);
 app.use("/posts", postsRouter);
